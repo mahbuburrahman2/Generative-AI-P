@@ -1,12 +1,12 @@
-from langchain_groq import ChatGroq 
+from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from typing import TypedDict, Annotated, Literal, Optional
 load_dotenv()
 
 
-model = ChatGroq(model= "llama-3.3-70b-versatile")
+model = ChatGroq(model= "openai/gpt-oss-20b")
 
-#define the schema 
+#define the schema
 
 class ResumeAnalysis(TypedDict):
 
@@ -25,12 +25,12 @@ class ResumeAnalysis(TypedDict):
 
 
 
-#create structured output 
+#create structured output
 
 structured_model = model.with_structured_output(ResumeAnalysis)
 
 
-#invoke the model 
+#invoke the model
 
 result = structured_model.invoke(
     """My name is  Mahir Tajuar Akash. I am a Computer Science graduate with two years
@@ -58,6 +58,7 @@ result = structured_model.invoke(
 # print(result['candidate_name'])
 
 # print(type(result))
+
 print(result)
 
 
